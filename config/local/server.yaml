@@ -1,0 +1,11 @@
+---
+name: xxx-xxx
+mode: local
+transport:
+  http:
+    port: 8888
+    ip: '0.0.0.0'
+  grpc:
+    port: 50052
+    ip: '0.0.0.0'
+...
