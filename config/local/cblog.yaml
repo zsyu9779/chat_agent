@@ -1,0 +1,6 @@
+---
+Dir: "/tmp/log/"
+LogCollectPath: "log_collect"
+LogMsgPath: "log_msg"
+LogSqlPath: "log_resource"
+...
