@@ -11,7 +11,7 @@ import (
 )
 
 func TestDoubao(t *testing.T) {
-	apiKey := "662bf06a-e486-45fa-a458-96d49305137e"
+	apiKey := ""
 	client := arkruntime.NewClientWithApiKey(
 		apiKey,
 		arkruntime.WithTimeout(2*time.Minute),
@@ -21,7 +21,7 @@ func TestDoubao(t *testing.T) {
 
 	fmt.Println("----- standard request -----")
 	req := model.ChatCompletionRequest{
-		Model: "ep-20240901192351-wv5cv",
+		Model: "",
 		Messages: []*model.ChatCompletionMessage{
 			{
 				Role: model.ChatMessageRoleSystem,
