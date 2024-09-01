@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: xxx-xxx-testing
+  name: xxx-xxx
+spec:
+  selector:
+    app: xxx-xxx
+  ports:
+    - port: 8889
+      targetPort: 8889
+  sessionAffinity: None
+...

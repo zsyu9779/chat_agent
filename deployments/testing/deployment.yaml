@@ -1,0 +1,57 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: xxx-xxx-testing
+  name: xxx-xxx
+  labels:
+    app: xxx-xxx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: xxx-xxx
+  template:
+    metadata:
+      labels:
+        app: xxx-xxx
+    spec:
+      containers:
+        - name: xxx-xxx
+          image: harbor.xxx.com/xxx-xxx/xxx-xxx:testing # todo change
+          imagePullPolicy: Always
+          ports:
+            - name: main
+              containerPort: 8889
+          #          lifecycle:
+          #            preStop:
+          #              exec:
+          #                command: ["/bin/sh", "/home/wwwroot/websocket/deployments/grace_terminate.sh"]
+          resources:
+            requests:
+              memory: "1024Mi"
+              cpu: "500m"
+            limits:
+              memory: "1024Mi"
+              cpu: "500m"
+          env:
+            - name: APP_MODE
+              valueFrom:
+                configMapKeyRef:
+                  name: xxx-xxx
+                  key: appMode
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/config
+            - name: log-dir
+              mountPath: /home/log
+      volumes:
+        - name: config-volume
+          configMap:
+            name: xxx-xxx
+        - name: log-dir
+          hostPath:
+            path: /home/log
+      imagePullSecrets:
+        - name: regcred
+...

@@ -3,7 +3,6 @@ package config
 import (
 	"github.com/gin-gonic/gin"
 	"gopkg.in/yaml.v3"
-	"io/ioutil"
 	"log"
 	"os"
 	"path/filepath"
@@ -70,7 +69,7 @@ func (config *Ser) init() {
 		configPath = filepath.Join(workPath, "config", appMode)
 	}
 	filePath := filepath.Join(configPath, serverConfig)
-	yamlContent, err := ioutil.ReadFile(filePath)
+	yamlContent, err := os.ReadFile(filePath)
 	if err != nil {
 		log.Panicf("load %s error %v", serverConfig, err)
 	}
@@ -105,10 +104,10 @@ func GetAppMode() string {
 // 是否Debug环境
 func IsDebugEnv() bool {
 	//appMode = os.Getenv(appModeEnv)
-	debugEnv := map[string]int{
-		TestingMode: 1,
-		DevelopMode: 1,
-		LocalMode:   1,
+	debugEnv := map[string]struct{}{
+		TestingMode: {},
+		DevelopMode: {},
+		LocalMode:   {},
 	}
 	res := false
 	if _, ok := debugEnv[appMode]; ok {
@@ -119,9 +118,9 @@ func IsDebugEnv() bool {
 
 // 是否开发环境
 func IsDevelopEnv() bool {
-	debugEnv := map[string]int{
-		DevelopMode: 1,
-		LocalMode:   1,
+	debugEnv := map[string]struct{}{
+		DevelopMode: {},
+		LocalMode:   {},
 	}
 	res := false
 	if _, ok := debugEnv[appMode]; ok {

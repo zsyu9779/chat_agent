@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: xxx-xxx-develop
+  name: xxx-xxx
+spec:
+  selector:
+    app: xxx-xxx
+  ports:
+    - port: 8889
+      targetPort: 8889
+      name: web
+    - port: 50051
+      targetPort: 50051
+      name: grpc
+  sessionAffinity: None
+...

@@ -1,11 +1,10 @@
 package config
 
 import (
-	"io/ioutil"
-	"log"
-	"path/filepath"
-
 	"gopkg.in/yaml.v3"
+	"log"
+	"os"
+	"path/filepath"
 )
 
 const (
@@ -21,7 +20,7 @@ type cbLog struct {
 
 func (config *cbLog) init() {
 	filePath := filepath.Join(configPath, cbLogConfig)
-	content, err := ioutil.ReadFile(filePath)
+	content, err := os.ReadFile(filePath)
 	if err != nil {
 		log.Panicf("load %s error %v", logConfig, err)
 	}

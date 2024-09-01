@@ -1,0 +1,22 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: xxx-xxx-develop
+  name: xxx-xxx
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/proxy-body-size: 50m
+spec:
+  rules:
+    #- host: xxx-xxx.xxx-xxx-develop.svc.cluster.local
+    - http:
+        paths:
+          - pathType: Prefix
+            path: /v1/
+            backend:
+              service:
+                name: xxx-xxx
+                port:
+                  number: 8889
+...

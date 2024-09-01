@@ -1,0 +1,21 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: xxx-xxx-testing
+  name: xxx-xxx
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+    - host: xxx-xxx.xxx-xxx-testing.svc.cluster.local
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: xxx-xxx
+                port:
+                  number: 8889
+...

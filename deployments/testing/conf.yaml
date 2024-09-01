@@ -1,0 +1,33 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: xxx-xxx-testing
+  name: xxx-xxx
+data:
+  appMode: testing
+  server.yaml: |+
+    ---
+    name: xxx-xxx
+    mode: testing
+    transport:
+      http:
+        port: 8889
+        ip: '0.0.0.0'
+      grpc:
+        port: 50051
+        ip: '0.0.0.0'
+
+  log.yaml: |+
+    ---
+    file_path: "/home/log/go/xxx_xxx"
+    prefix: ''
+
+  mysql.yaml: |+
+    ---
+
+  redis.yaml: |+
+    ---
+
+  grpc_client.yaml: |+
+    ---
